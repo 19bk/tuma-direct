@@ -1,0 +1,62 @@
+{
+  "name": "tuma-direct",
+  "version": "1.0.0",
+  "description": "Bridging Mobile Money with Crypto for Kenya's Financial Future",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\" \"npm run dev:contracts\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "dev:contracts": "cd contracts && npm run dev",
+    "build": "npm run build:web && npm run build:backend",
+    "build:web": "cd web && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test": "npm run test:contracts && npm run test:backend && npm run test:web",
+    "test:contracts": "cd contracts && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "test:web": "cd web && npm run test",
+    "deploy": "npm run deploy:contracts && npm run deploy:backend",
+    "deploy:contracts": "cd contracts && npm run deploy",
+    "deploy:backend": "cd backend && npm run deploy",
+    "lint": "npm run lint:web && npm run lint:backend",
+    "lint:web": "cd web && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "fintech",
+    "crypto",
+    "mobile-money",
+    "mpesa",
+    "kenya",
+    "web3",
+    "coinbase",
+    "usdc",
+    "aleo",
+    "flutter",
+    "react"
+  ],
+  "author": "TumaDirect Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/tuma-direct.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/tuma-direct/issues"
+  },
+  "homepage": "https://github.com/your-username/tuma-direct#readme"
+} 
