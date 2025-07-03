@@ -1,0 +1,97 @@
+name: tuma_direct
+description: Bridging Mobile Money with Crypto for Kenya's Financial Future
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  
+  # Code Generation
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  
+  # Backend & API
+  supabase_flutter: ^2.3.4
+  dio: ^5.4.0
+  
+  # Navigation
+  go_router: ^13.2.0
+  
+  # UI & Styling
+  flutter_hooks: ^0.20.5
+  hooks_riverpod: ^2.4.9
+  cached_network_image: ^3.3.1
+  
+  # Utilities
+  logger: ^2.0.2+1
+  intl: ^0.19.0
+  
+  # Web3 & Crypto
+  web3dart: ^2.7.3
+  bip39: ^1.0.6
+  crypto: ^3.0.3
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # Permissions
+  permission_handler: ^11.3.0
+  
+  # QR Code
+  qr_flutter: ^4.1.0
+  qr_code_scanner: ^1.0.1
+  
+  # Biometrics
+  local_auth: ^2.1.8
+  
+  # Image Picker
+  image_picker: ^1.0.7
+  
+  # URL Launcher
+  url_launcher: ^6.2.4
+  
+  # Device Info
+  device_info_plus: ^9.1.2
+  
+  # Connectivity
+  connectivity_plus: ^5.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Code Generation
+  build_runner: ^2.4.8
+  freezed: ^2.4.6
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.3.9
+  
+  # Linting
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+  
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Regular.ttf
+  #       - asset: assets/fonts/Poppins-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Poppins-Bold.ttf
+  #         weight: 700 
