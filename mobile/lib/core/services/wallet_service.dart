@@ -3,14 +3,14 @@ import 'package:logger/logger.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
-import '../models/wallet.dart';
+import '../models/wallet.dart' as app_models;
 import '../config/supabase_config.dart';
 
 class WalletService {
   final _supabase = Supabase.instance.client;
   final _logger = Logger();
 
-  Future<List<Wallet>> getUserWallets() async {
+  Future<List<app_models.AppWallet>> getUserWallets() async {
     try {
       final session = _supabase.auth.currentSession;
       if (session == null) throw Exception('User not authenticated');
@@ -22,15 +22,15 @@ class WalletService {
           .eq('is_deleted', false)
           .order('created_at', ascending: false);
 
-      return walletsData.map((data) => Wallet.fromJson(data)).toList();
+      return walletsData.map((data) => app_models.AppWallet.fromJson(data)).toList();
     } catch (e) {
       _logger.e('Error getting user wallets: $e');
       rethrow;
     }
   }
 
-  Future<Wallet> createWallet({
-    required WalletType type,
+  Future<app_models.AppWallet> createWallet({
+    required app_models.WalletType type,
     required String network,
   }) async {
     try {
@@ -42,7 +42,7 @@ class WalletService {
       final privateKey = _generatePrivateKey(mnemonic);
       final address = _generateAddress(privateKey, type);
 
-      final wallet = Wallet(
+      final wallet = app_models.AppWallet(
         id: _generateWalletId(),
         userId: session.user.id,
         address: address,
@@ -68,9 +68,9 @@ class WalletService {
     }
   }
 
-  Future<Wallet> importWallet({
+  Future<app_models.AppWallet> importWallet({
     required String privateKey,
-    required WalletType type,
+    required app_models.WalletType type,
     required String network,
   }) async {
     try {
@@ -79,7 +79,7 @@ class WalletService {
 
       final address = _generateAddress(privateKey, type);
 
-      final wallet = Wallet(
+      final wallet = app_models.AppWallet(
         id: _generateWalletId(),
         userId: session.user.id,
         address: address,
@@ -104,7 +104,7 @@ class WalletService {
     }
   }
 
-  Future<Wallet> getWalletBalance(String walletId) async {
+  Future<app_models.AppWallet> getWalletBalance(String walletId) async {
     try {
       final walletData = await _supabase
           .from(SupabaseConfig.walletsTable)
@@ -113,7 +113,7 @@ class WalletService {
           .eq('is_deleted', false)
           .single();
 
-      final wallet = Wallet.fromJson(walletData);
+      final wallet = app_models.AppWallet.fromJson(walletData);
       
       // In a real implementation, you would fetch the actual balance
       // from the blockchain here
@@ -148,7 +148,7 @@ class WalletService {
     }
   }
 
-  Future<Wallet?> getWalletById(String walletId) async {
+  Future<app_models.AppWallet?> getWalletById(String walletId) async {
     try {
       final walletData = await _supabase
           .from(SupabaseConfig.walletsTable)
@@ -157,7 +157,7 @@ class WalletService {
           .eq('is_deleted', false)
           .single();
 
-      return Wallet.fromJson(walletData);
+      return app_models.AppWallet.fromJson(walletData);
     } catch (e) {
       _logger.e('Error getting wallet by ID: $e');
       return null;
@@ -174,24 +174,24 @@ class WalletService {
     return '0x${mnemonic.hashCode.toRadixString(16)}';
   }
 
-  String _generateAddress(String privateKey, WalletType type) {
+  String _generateAddress(String privateKey, app_models.WalletType type) {
     // In a real implementation, you would generate proper addresses
     // based on the wallet type
     return '0x${privateKey.hashCode.toRadixString(16)}';
   }
 
-  String _getCurrencyForType(WalletType type) {
+  String _getCurrencyForType(app_models.WalletType type) {
     switch (type) {
-      case WalletType.ethereum:
+      case app_models.WalletType.ethereum:
         return 'ETH';
-      case WalletType.polygon:
+      case app_models.WalletType.polygon:
         return 'MATIC';
-      case WalletType.aleo:
+      case app_models.WalletType.aleo:
         return 'ALEO';
     }
   }
 
-  Future<double> _fetchBalanceFromBlockchain(Wallet wallet) async {
+  Future<double> _fetchBalanceFromBlockchain(app_models.AppWallet wallet) async {
     // In a real implementation, you would fetch the actual balance
     // from the blockchain using web3dart or similar
     await Future.delayed(const Duration(milliseconds: 500));

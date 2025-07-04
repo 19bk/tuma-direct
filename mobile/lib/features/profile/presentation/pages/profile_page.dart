@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/providers/auth_provider.dart';
+import '../../../../core/models/user.dart' as app_models;
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -57,7 +58,7 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfileContent(BuildContext context, User user) {
+  Widget _buildProfileContent(BuildContext context, app_models.AppUser user) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(

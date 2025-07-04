@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/providers/auth_provider.dart';
+import '../../../../core/models/user.dart' as app_models;
 import '../widgets/auth_text_field.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -103,7 +104,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     );
   }
 
-  Widget _buildForm(AsyncValue<User?> authState) {
+  Widget _buildForm(AsyncValue<app_models.AppUser?> authState) {
     return Column(
       children: [
         Row(
@@ -249,7 +250,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     );
   }
 
-  Widget _buildRegisterButton(AsyncValue<User?> authState) {
+  Widget _buildRegisterButton(AsyncValue<app_models.AppUser?> authState) {
     return ElevatedButton(
       onPressed: authState.isLoading ? null : _handleRegister,
       child: authState.isLoading

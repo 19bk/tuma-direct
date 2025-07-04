@@ -4,8 +4,8 @@ part 'wallet.freezed.dart';
 part 'wallet.g.dart';
 
 @freezed
-class Wallet with _$Wallet {
-  const factory Wallet({
+class AppWallet with _$AppWallet {
+  const factory AppWallet({
     required String id,
     required String userId,
     required String address,
@@ -21,7 +21,7 @@ class Wallet with _$Wallet {
     @Default(false) bool isDeleted,
   }) = _Wallet;
 
-  factory Wallet.fromJson(Map<String, dynamic> json) => _$WalletFromJson(json);
+  factory AppWallet.fromJson(Map<String, dynamic> json) => _$AppWalletFromJson(json);
 }
 
 @JsonEnum()

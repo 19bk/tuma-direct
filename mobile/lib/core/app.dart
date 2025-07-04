@@ -3,6 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'providers/auth_provider.dart';
+import '../features/auth/presentation/pages/login_page.dart';
+import '../features/auth/presentation/pages/register_page.dart';
+import '../features/home/presentation/pages/home_page.dart';
+import '../features/wallet/presentation/pages/wallet_page.dart';
+import '../features/send/presentation/pages/send_page.dart';
+import '../features/onramp/presentation/pages/onramp_page.dart';
+import '../features/profile/presentation/pages/profile_page.dart';
 
 class TumaDirectApp extends ConsumerWidget {
   const TumaDirectApp({super.key});

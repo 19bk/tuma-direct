@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../models/wallet.dart';
+import '../models/wallet.dart' as app_models;
 import '../services/wallet_service.dart';
 
 part 'wallet_provider.g.dart';
@@ -8,7 +8,7 @@ part 'wallet_provider.g.dart';
 @riverpod
 class WalletNotifier extends _$WalletNotifier {
   @override
-  Future<List<Wallet>> build() async {
+  Future<List<app_models.AppWallet>> build() async {
     final walletService = ref.read(walletServiceProvider);
     return walletService.getUserWallets();
   }

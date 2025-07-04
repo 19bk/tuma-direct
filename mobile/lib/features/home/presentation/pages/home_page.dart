@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/providers/auth_provider.dart';
 import '../../../../core/providers/wallet_provider.dart';
+import '../../../../core/models/user.dart' as app_models;
+import '../../../../core/models/wallet.dart' as app_models_wallet;
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -97,7 +99,7 @@ class _UnauthenticatedView extends StatelessWidget {
 class _AuthenticatedView extends ConsumerWidget {
   const _AuthenticatedView({required this.walletState});
 
-  final AsyncValue<List<Wallet>> walletState;
+  final AsyncValue<List<app_models_wallet.AppWallet>> walletState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -302,7 +304,7 @@ class _AuthenticatedView extends ConsumerWidget {
     );
   }
 
-  Widget _buildWalletList(List<Wallet> wallets) {
+  Widget _buildWalletList(List<app_models_wallet.AppWallet> wallets) {
     return Column(
       children: wallets.take(3).map((wallet) {
         return Card(
@@ -380,24 +382,24 @@ class _AuthenticatedView extends ConsumerWidget {
     );
   }
 
-  Color _getWalletColor(WalletType type) {
+  Color _getWalletColor(app_models_wallet.WalletType type) {
     switch (type) {
-      case WalletType.ethereum:
+      case app_models_wallet.WalletType.ethereum:
         return Colors.blue;
-      case WalletType.polygon:
+      case app_models_wallet.WalletType.polygon:
         return Colors.purple;
-      case WalletType.aleo:
+      case app_models_wallet.WalletType.aleo:
         return Colors.orange;
     }
   }
 
-  IconData _getWalletIcon(WalletType type) {
+  IconData _getWalletIcon(app_models_wallet.WalletType type) {
     switch (type) {
-      case WalletType.ethereum:
+      case app_models_wallet.WalletType.ethereum:
         return Icons.currency_bitcoin;
-      case WalletType.polygon:
+      case app_models_wallet.WalletType.polygon:
         return Icons.polygon;
-      case WalletType.aleo:
+      case app_models_wallet.WalletType.aleo:
         return Icons.security;
     }
   }

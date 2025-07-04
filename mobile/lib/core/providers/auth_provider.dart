@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../models/user.dart';
+import '../models/user.dart' as app_models;
 import '../services/auth_service.dart';
 
 part 'auth_provider.g.dart';
@@ -9,7 +9,7 @@ part 'auth_provider.g.dart';
 @riverpod
 class Auth extends _$Auth {
   @override
-  Future<User?> build() async {
+  Future<app_models.AppUser?> build() async {
     final authService = ref.read(authServiceProvider);
     return authService.getCurrentUser();
   }

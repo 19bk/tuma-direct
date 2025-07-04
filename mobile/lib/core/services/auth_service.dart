@@ -1,14 +1,14 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:logger/logger.dart';
 
-import '../models/user.dart';
+import '../models/user.dart' as app_models;
 import '../config/supabase_config.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
   final _logger = Logger();
 
-  Future<User?> getCurrentUser() async {
+  Future<app_models.AppUser?> getCurrentUser() async {
     try {
       final session = _supabase.auth.currentSession;
       if (session == null) return null;
@@ -20,7 +20,7 @@ class AuthService {
           .eq('is_deleted', false)
           .single();
 
-      return User.fromJson(userData);
+      return app_models.AppUser.fromJson(userData);
     } catch (e) {
       _logger.e('Error getting current user: $e');
       return null;
@@ -48,7 +48,7 @@ class AuthService {
           .eq('is_deleted', false)
           .single();
 
-      return User.fromJson(userData);
+      return app_models.AppUser.fromJson(userData);
     } catch (e) {
       _logger.e('Error signing in: $e');
       rethrow;
@@ -72,7 +72,7 @@ class AuthService {
         throw Exception('Sign up failed');
       }
 
-      final user = User(
+      final user = app_models.AppUser(
         id: response.user!.id,
         email: email,
         phoneNumber: phoneNumber,
@@ -81,7 +81,7 @@ class AuthService {
         isEmailVerified: false,
         isPhoneVerified: false,
         isKycCompleted: false,
-        status: UserStatus.pending,
+        status: app_models.UserStatus.pending,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );
@@ -106,7 +106,7 @@ class AuthService {
     }
   }
 
-  Future<User> updateProfile({
+  Future<app_models.AppUser> updateProfile({
     required String userId,
     String? firstName,
     String? lastName,
@@ -129,14 +129,14 @@ class AuthService {
           .select()
           .single();
 
-      return User.fromJson(userData);
+      return app_models.AppUser.fromJson(userData);
     } catch (e) {
       _logger.e('Error updating profile: $e');
       rethrow;
     }
   }
 
-  Future<User> verifyPhoneNumber({
+  Future<app_models.AppUser> verifyPhoneNumber({
     required String userId,
     required String code,
   }) async {
@@ -154,7 +154,7 @@ class AuthService {
           .select()
           .single();
 
-      return User.fromJson(userData);
+      return app_models.AppUser.fromJson(userData);
     } catch (e) {
       _logger.e('Error verifying phone number: $e');
       rethrow;

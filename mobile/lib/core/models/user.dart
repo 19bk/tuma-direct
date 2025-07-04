@@ -4,8 +4,8 @@ part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-class User with _$User {
-  const factory User({
+class AppUser with _$AppUser {
+  const factory AppUser({
     required String id,
     required String email,
     required String phoneNumber,
@@ -21,7 +21,7 @@ class User with _$User {
     @Default(false) bool isDeleted,
   }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
 }
 
 @JsonEnum()

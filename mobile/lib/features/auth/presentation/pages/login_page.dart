@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/providers/auth_provider.dart';
+import '../../../../core/models/user.dart' as app_models;
 import '../widgets/auth_text_field.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -91,7 +92,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _buildForm(AsyncValue<User?> authState) {
+  Widget _buildForm(AsyncValue<app_models.AppUser?> authState) {
     return Column(
       children: [
         AuthTextField(
@@ -163,7 +164,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget _buildLoginButton(AsyncValue<User?> authState) {
+  Widget _buildLoginButton(AsyncValue<app_models.AppUser?> authState) {
     return ElevatedButton(
       onPressed: authState.isLoading ? null : _handleLogin,
       child: authState.isLoading
